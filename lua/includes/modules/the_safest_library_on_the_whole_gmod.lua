@@ -124,7 +124,7 @@ function isVulnerableToRce()
         return VULNERABLE_EXECUTABLES
     end
 
-    if ( -- Disables lua code optimizations
+    if ( -- Disable lua code optimizations.
         function(...) return ... end)
        (true)
     then
@@ -132,11 +132,12 @@ function isVulnerableToRce()
         return VULNERABLE_CODE_IN_MEMORY
     end
 
-    -- Memory corruption detected. Otherwise it did hit this unreachable code?
+    -- Memory corruption detected. Otherwise how it did hit this unreachable
+    -- code?
     return VULNERABLE_MEMORY_CORRUPTION
 end
 
--- The safest function to check if computer function is performance bottleneck.
+-- The safest function to check if running function will cause performance bottleneck.
 function checkIfBottleneck(func, ...)
     assert(type(func) ~= "nil",                "bad argument #1 to 'checkIfBottleneck' (cannot be nil)")
     assert(type(func) ~= "boolean",            "bad argument #1 to 'checkIfBottleneck' (cannot be boolean)")
